@@ -11,6 +11,14 @@ export class UserRepository {
     })
   }
 
+  async getByEmail({ email }: { email: string }) {
+    return await prisma.user.findUnique({
+      where: {
+        email
+      }
+    })
+  }
+
   async authenticate(login: string) {
     return prisma.user.findFirst({
       where: {

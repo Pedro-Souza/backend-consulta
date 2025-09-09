@@ -14,6 +14,12 @@ enum UserOrganizationRole {
   MEMBER
 }
 
+enum UserOrganizationStatus {
+  ACTIVE
+  PENDING
+  DISABLED
+}
+
 model User {
   id               String             @id @default(uuid())
   createdAt        DateTime           @default(now()) @map("created_at")
@@ -28,15 +34,16 @@ model User {
 }
 
 model OrganizationUser {
-  id           String               @id @default(uuid())
-  createdAt    DateTime             @default(now()) @map("created_at")
-  updatedAt    DateTime             @updatedAt @map("updated_at")
+  id           String                 @id @default(uuid())
+  createdAt    DateTime               @default(now()) @map("created_at")
+  updatedAt    DateTime               @updatedAt @map("updated_at")
   //
-  role         UserOrganizationRole @default(ADMIN)
+  role         UserOrganizationRole   @default(ADMIN)
+  status       UserOrganizationStatus @default(ACTIVE)
   //
   Organization Organization[]
   //
-  user         User                 @relation(fields: [userId], references: [id])
+  user         User?                  @relation(fields: [userId], references: [id])
   userId       String
 }
 
