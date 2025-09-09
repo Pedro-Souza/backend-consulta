@@ -40,11 +40,13 @@ model OrganizationUser {
   //
   role         UserOrganizationRole   @default(ADMIN)
   status       UserOrganizationStatus @default(ACTIVE)
+  userName     String                 @map("user_name")
+  userEmail    String                 @unique @map("user_email")
   //
   Organization Organization[]
   //
   user         User?                  @relation(fields: [userId], references: [id])
-  userId       String
+  userId       String?
 }
 
 model Organization {

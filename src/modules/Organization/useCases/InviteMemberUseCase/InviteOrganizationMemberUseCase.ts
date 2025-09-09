@@ -1,6 +1,7 @@
 import { UserOrganizationRole, UserOrganizationStatus } from "@prisma/client";
 import { OrganizationRepository } from "../../repositories/OrganizationRepository";
 import { UserRepository } from "@/modules/User/repositories/UserRepository";
+import { emailService, welcomeEmailTemplate } from "@/infra/emails";
 
 export default class InviteOrganizationMemberUseCase {
   constructor(
@@ -11,19 +12,21 @@ export default class InviteOrganizationMemberUseCase {
     this.userRepository = userRepository
   }
 
-  async execute({ userEmail, organizationId, role }: { userEmail: string, organizationId: string, role: UserOrganizationRole }) {
+  async execute({ userEmail, organizationId, role, userName }: { userName: string, userEmail: string, organizationId: string, role: UserOrganizationRole }) {
     const user = await this.userRepository.getByEmail({ email: userEmail });
     const hasUserCreated = !!user;
 
     const result = await this.organizationRepository.addMember({
+      userName,
+      userEmail,
       organizationId,
       role,
       status: hasUserCreated ? 'ACTIVE' : 'PENDING',
       userId: user?.id
     });
 
-    //TODO: enviar email de convite
-    //Todo: criar fluxo de aceitar o convite
+    const template = welcomeEmailTemplate(userName);
+    await emailService.sendTemplateEmail(userEmail, template);
 
     return result;
   }

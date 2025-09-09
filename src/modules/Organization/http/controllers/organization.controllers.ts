@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import CreateOrganization from '../../useCases/CreateOrganization'
+import InviteMember from '../../useCases/InviteMemberUseCase';
 
 export class OrganizationControllers {
   async create(req: Request, res: Response): Promise<void> {
@@ -17,13 +18,15 @@ export class OrganizationControllers {
     }
   };
 
-  async addMember(req: Request, res: Response): Promise<void> {
+  async invite(req: Request, res: Response): Promise<void> {
     try {
-      const { ceateOrganizationUseCase } = await CreateOrganization();
+      const { inviteMemberUseCase } = await InviteMember();
       // TODO: pegar o userId to token quando estiver implementado
-      const organization = await ceateOrganizationUseCase.execute({
-        name: req.body.name,
-        userId: '5d682f9f-69b6-4579-9468-35934e5902f8'
+      const organization = await inviteMemberUseCase.execute({
+        organizationId: req.body.organizationId,
+        role: req.body.role,
+        userEmail: req.body.userEmail,
+        userName: req.body.name,
       });
 
       res.status(201).json(organization)
