@@ -48,6 +48,7 @@
     "passport-jwt": "^4.0.1",
     "prisma": "^5.7.1",
     "redis": "^4.6.11",
+    "resend": "^6.0.3",
     "tsconfig-paths": "^4.2.0",
     "zod": "^3.22.4"
   },
