@@ -109,28 +109,28 @@ export const consultNotificationEmailTemplate = (data: ConsultNotificationData):
         <div class="content">
           <h2>Olá, ${data.userName}!</h2>
           <p>${statusInfo.message}</p>
-          
+
           <div class="status-badge">
             ${statusInfo.title}
           </div>
-          
+
           <div class="info-box">
             <h3>Detalhes da Consulta:</h3>
             <p><strong>CPF:</strong> ${data.cpf}</p>
             <p><strong>ID da Consulta:</strong> ${data.consultId}</p>
             <p><strong>Status:</strong> ${statusInfo.title}</p>
           </div>
-          
+
           ${data.status === 'completed' ? `
             <p>Você pode acessar os resultados da sua consulta através do nosso sistema.</p>
             <a href="#" class="button">Ver Resultados</a>
           ` : ''}
-          
+
           ${data.status === 'failed' ? `
             <p>Por favor, tente novamente ou entre em contato conosco se o problema persistir.</p>
             <a href="#" class="button">Tentar Novamente</a>
           ` : ''}
-          
+
           ${data.status === 'processing' ? `
             <p>Você receberá uma notificação assim que a consulta for concluída.</p>
           ` : ''}
@@ -144,18 +144,18 @@ export const consultNotificationEmailTemplate = (data: ConsultNotificationData):
     `,
     text: `
       Olá, ${data.userName}!
-      
+
       ${statusInfo.message}
-      
+
       Detalhes da Consulta:
       - CPF: ${data.cpf}
       - ID da Consulta: ${data.consultId}
       - Status: ${statusInfo.title}
-      
+
       ${data.status === 'completed' ? 'Você pode acessar os resultados da sua consulta através do nosso sistema.' : ''}
       ${data.status === 'failed' ? 'Por favor, tente novamente ou entre em contato conosco se o problema persistir.' : ''}
       ${data.status === 'processing' ? 'Você receberá uma notificação assim que a consulta for concluída.' : ''}
-      
+
       ---
       Este é um email automático, por favor não responda.
       © 2024 EasyCPF. Todos os direitos reservados.

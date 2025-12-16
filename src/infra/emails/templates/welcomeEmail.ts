@@ -89,3 +89,4 @@ export const welcomeEmailTemplate = (userName: string): EmailTemplate => ({
     © 2024 EasyCPF. Todos os direitos reservados.
   `
 });
+

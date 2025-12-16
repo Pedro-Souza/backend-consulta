@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
 import { ZodError } from 'zod'
-import { ApiResponse } from '@/types'
 
 export class AppError extends Error {
   public statusCode: number
@@ -38,7 +37,7 @@ export const errorHandler = (
     message = 'Invalid ID format'
   }
 
-  const response: ApiResponse = {
+  const response = {
     success: false,
     error: message,
   }
@@ -49,4 +48,3 @@ export const errorHandler = (
 
   res.status(statusCode).json(response)
 }
-

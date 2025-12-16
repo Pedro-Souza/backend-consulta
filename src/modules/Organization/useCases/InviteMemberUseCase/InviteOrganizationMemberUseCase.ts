@@ -16,6 +16,8 @@ export default class InviteOrganizationMemberUseCase {
     const user = await this.userRepository.getByEmail({ email: userEmail });
     const hasUserCreated = !!user;
 
+    console.log({ userEmail, organizationId, role, userName, hasUserCreated })
+
     const result = await this.organizationRepository.addMember({
       userName,
       userEmail,

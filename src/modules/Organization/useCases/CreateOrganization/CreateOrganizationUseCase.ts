@@ -10,7 +10,9 @@ export default class CreateOrganizationUseCase {
   async execute({ name, userId }: { name: string, userId: string }) {
     const result = await this.organizationRepository.create({
       name,
-      userId
+      userId,
+      userEmail: '',
+      userName: ''
     });
 
     return result;

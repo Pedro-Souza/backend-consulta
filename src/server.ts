@@ -34,7 +34,6 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(passport.initialize());
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -46,8 +45,8 @@ app.get('/health', (req, res) => {
 })
 
 // API routes
-app.use('/api/v1/cpf', consultRouter);
-app.use('/api/v1/organizations', organizationRouter);
+//app.use('/api/v1/cpf', consultRouter);
+//app.use('/api/v1/organizations', organizationRouter);
 app.use('/api/v1/users', userRouter);
 
 // 404 handler
@@ -78,4 +77,7 @@ app.listen(PORT, () => {
   console.log(`📊 Environment: ${process.env.NODE_ENV}`)
   console.log(`🔗 Health check: http://localhost:${PORT}`)
 })
+
+
+
 

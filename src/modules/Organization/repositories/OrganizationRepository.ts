@@ -34,4 +34,17 @@ export class OrganizationRepository {
       },
     })
   }
+
+  async updateUserOrganizationById({ userId, organizationUserId, userEmail }: { userEmail: string, userId: string, organizationUserId: string }) {
+    return prisma.organizationUser.update({
+      where: {
+        id: organizationUserId,
+        userEmail,
+      },
+      data: {
+        status: 'ACTIVE',
+        userId,
+      }
+    })
+  }
 }
