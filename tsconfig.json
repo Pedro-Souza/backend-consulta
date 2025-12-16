@@ -6,16 +6,15 @@
     "allowJs": true,
     "sourceMap": true,
     "outDir": "./dist",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "src",
-    "rootDir": ".",
     "paths": {
       "@/*": ["*"]
-    },
-    "typeRoots" : []
+    }
   },
-  "include": ["src/**/*", "src/*", "**/src/**/*.ts", "jest/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
