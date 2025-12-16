@@ -44,7 +44,6 @@ app.get('/health', (req, res) => {
   })
 })
 
-// API routes
 //app.use('/api/v1/cpf', consultRouter);
 //app.use('/api/v1/organizations', organizationRouter);
 app.use('/api/v1/users', userRouter);
