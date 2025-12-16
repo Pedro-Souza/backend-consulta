@@ -4,7 +4,6 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
 
-import passport from 'src/modules/User/http/guard/passport'
 
 //import { errorHandler } from '@/middleware/errorHandler'
 import consultRouter from './modules/Consult/http/route'
