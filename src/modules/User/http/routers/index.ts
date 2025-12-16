@@ -11,9 +11,15 @@ const userRouter = Router();
 
 
 userRouter.get('/webhook', (req, res) => {
-  return res.send("1234567")
+  const mode = req.query['hub.mode']
+  const token = req.query['hub.verify_token']
+  const challenge = req.query['hub.challenge']
+
+  console.log({ mode, token, challenge })
+  return res.status(200).send(challenge)
 });
 userRouter.post('/webhook', (req, res) => {
-  console.log(req)
+  console.log('caiu no post')
+  console.log(JSON.stringify(req.body))
 });
 export default userRouter;
